@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, ProductImage
+from .models import Product, ProductImage, Banner
 
 # Register your models here.
 
@@ -17,4 +17,9 @@ class ProductAdmin(admin.ModelAdmin):
         ]
     inlines = [ProductImageInline]
 
+class BannerAdmin(admin.ModelAdmin):
+    list_display = ['id', 'image']
+    search_fields = ['id']
+
 admin.site.register(Product,ProductAdmin)
+admin.site.register(Banner,BannerAdmin)

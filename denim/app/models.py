@@ -17,7 +17,13 @@ class Product(models.Model):
     
 class ProductImage(models.Model):
     Product = models.ForeignKey(Product, related_name="images", on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="projects/images/")
+    image = models.ImageField(upload_to="products/images/")
 
     def __str__(self):
         return f"Image for {self.Product.name}"
+    
+class Banner(models.Model):
+    image = models.ImageField(upload_to="banners/")
+
+    def __str__(self):
+        return f"Banner {self.id}"

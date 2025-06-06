@@ -17,10 +17,18 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from app.views import AllProducts, AddProducts
+from app.views import AllProducts, AddProducts, UpdateProducts, DeleteProducts, BannerView, BannerAdd, Bannerdelete
+from app import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", AllProducts.as_view(), name='AllProducts'),
+    path("", views.Apioverview, name='Apioverview'),
+    path("all/", AllProducts.as_view(), name='AllProducts'),
     path("add/", AddProducts.as_view(), name='AddProducts'),
+    path("product/update/<int:pk>/", views.UpdateProducts.as_view(), name='UpdateProducts'),
+    path("product/<int:pk>/delete/", views.DeleteProducts.as_view(), name='DeleteProducts'),
+    path("banner/", BannerView.as_view(), name='BannerView'),
+    path("banner/add/", views.BannerAdd.as_view(), name='BannerAdd'),
+    path("banner/view/", views.BannerView.as_view(), name='BannerView'),
+    path("banner/delete/<int:pk>/", views.Bannerdelete.as_view(), name='BannerDelete'),
 ]
